@@ -80,6 +80,7 @@ if ( ! empty( $model_name) && ! empty( $model_action)) {
 	} catch ( Exception $e) {
 		die( 'Controler Factory Exception : ' . $e->getMessage() . "\n");
 	}
+	// var_dump($controller, $model_action);
 	// Action for this controller
 	if ( method_exists( $controller, $model_action))
 		try {
@@ -90,4 +91,4 @@ if ( ! empty( $model_name) && ! empty( $model_action)) {
 	else
 		die( "Action $model_action does not exists !");
 } else
-	die( "« Eh, what's up, doc ? »");
+	die("« Eh, what's up, doc ? »");

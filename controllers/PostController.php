@@ -4,10 +4,6 @@ namespace mvcCore\Controllers;
 //use mvcCore\Data\Cars;
 use mvcCore\Views\View;
 
-/*
- * @author : Jean-Michel Bruneau
- * @version : 1.0
- */
 
 class PostController extends Controller {
 

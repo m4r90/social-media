@@ -35,20 +35,26 @@
                     <div class="hidden md:block">
                         <div class="ml-4 flex items-center md:ml-6">
 
-                            <!-- Profile dropdown -->
-                            <div <div class="relative group">
-                                <button class="flex items-center focus:outline-none">
-                                    <img src="https://placekitten.com/40/40" alt="Profile" class="h-8 w-8 rounded-full">
-                                </button>
+                            <?php
+                            if ($_SESSION['connected']) {
+                                echo
+                                    '<div class="relative group">
+                                        <button class="flex items-center focus:outline-none">
+                                            <img src="https://placekitten.com/40/40" alt="Profile" class="h-8 w-8 rounded-full">
+                                        </button>
+        
+        
+                                        <!-- Dropdown menu -->
+                                        <div
+                                            class="absolute hidden mt-2 space-y-2 bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5">
+                                            <a href="#" class="block px-4 py-2 text-sm text-gray-700">Your Profile</a>
+                                            <a href="#" class="block px-4 py-2 text-sm text-gray-700">Settings</a>
+                                            <a href="index.php?model=login&action=logout" class="block px-4 py-2 text-sm text-gray-700">Sign out</a>
+                                        </div>
+                                    </>';
+                            }
 
-                                <!-- Dropdown menu -->
-                                <div
-                                    class="absolute hidden mt-2 space-y-2 bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5">
-                                    <a href="#" class="block px-4 py-2 text-sm text-gray-700">Your Profile</a>
-                                    <a href="#" class="block px-4 py-2 text-sm text-gray-700">Settings</a>
-                                    <a href="#" class="block px-4 py-2 text-sm text-gray-700">Sign out</a>
-                                </div>
-                            </div>
+                            ?>
 
                             <script>
                             // JavaScript to show/hide the dropdown menu on hover

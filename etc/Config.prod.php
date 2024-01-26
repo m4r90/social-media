@@ -14,26 +14,26 @@ class Config {
 	const  VERBOSE = false;
 	
 	// Session Name
-	const SESSION_NAME = 'MVCCORE';
+	const SESSION_NAME = 'SOCIAL-MEDIA';
 
 	// XHTML flag
 	const XHTML = true;
 	
 	// Default model
-	const MODEL = 'order';
+	const MODEL = 'post';
 	// Default action
-	const ACTION = 'create';
+	const ACTION = 'read';
 	
 	// Database parameters
-	const DBTYPE = 'pgsql';
-	const DBHOST = 'localhost';
+	const DBTYPE = 'mysql';
+	const DBHOST = 'linserv-info-01.campus.unice.fr';
 	const DBPORT = 5432; // sur linserv-info-03
 //	const DBPORT = 5433; // localhost
-	
-	const DBNAME = 'jmbruneau'; // sur linserv-info-03
+
+	const DBNAME = 'rm200523_social_media'; // sur linserv-info-03
 //	const DBNAME = 'car-workshop'; // localhost
-	const DBUSER = 'jmbruneau';
-	const DBPASSWD = '<jmb!25164>'; // sur linserv-info-03
+	const DBUSER = 'rm200523';
+	const DBPASSWD = 'rm200523'; // sur linserv-info-03
 //	const DBPASSWD = '<jmb!5433>'; // localhost
 	
 	// Form data defintion

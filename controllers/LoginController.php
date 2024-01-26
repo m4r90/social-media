@@ -23,16 +23,14 @@ class LoginController extends Controller {
 			// Lastname, Firstname and Email
 			
 			$this->__model->setEmail( filter_input( $method, 'email', FILTER_SANITIZE_EMAIL));
-			$this->__model->setAdmin( filter_input( $method, 'admin', FILTER_SANITIZE_NUMBER_INT));
-			$this->__model->setUsername( filter_input( $method, 'username', FILTER_SANITIZE_NUMBER_INT));
-
-
-			
+			#$this->__model->setAdmin( filter_input( $method, 'admin', FILTER_SANITIZE_NUMBER_INT));
+			$this->__model->setUsername(filter_input($method, 'username', FILTER_SANITIZE_NUMBER_INT));
 		}
 	}
-	
-	
-	public function login($method = INPUT_POST) {
+
+
+	public function login($method = INPUT_POST)
+	{
 		
 		$email = filter_input($method, 'email', FILTER_SANITIZE_EMAIL);
 		$password = filter_input($method, 'password', FILTER_SANITIZE_STRING);
@@ -43,20 +41,36 @@ class LoginController extends Controller {
 			$sql = "SELECT * FROM users WHERE email = ?";
 			
 			// Run the query with a prepared statement
-			$result = $this->__model->runSelect($sql, [$email]);
+			$result = $this->__dao->runSelect($sql, [$email]);
 	
 			// Check if a user was found
 			if ($result && count($result) > 0) {
 				$user = $result[0];
 	
 				// Compare the input password with the retrieved one
-				if (password_verify($password, $user['password'])) {
+				// if (password_verify($password, $user['password'])) {
 					// Passwords match, user is authenticated
 					// You can implement the login logic here
+				if ($user['password'] == $password) {
+
 					echo "Login successful!";
+					session_start();
+					$_SESSION['connected'] = true;
+					$_SESSION['email'] = $user['email'];
+					$_SESSION['username'] = $user['username'];
+					$_SESSION['id'] = $user['id'];
+					$_SESSION['avatar'] = $user['avatar'];
+
+					$this->redirect(['model' => 'post', 'action' => 'read']);
+
 				} else {
 					// Passwords do not match
 					echo "Invalid password!";
+					session_start();
+					$_SESSION['connected'] = false;
+					$_SESSION['error_message'] = "Wrong email or password";
+					$this->redirect(['model' => 'login', 'action' => 'welcome']);
+
 				}
 			} else {
 				// User not found
@@ -66,6 +80,22 @@ class LoginController extends Controller {
 			// Email or password not provided
 			echo "Email or password not provided!";
 		}
+	}
+
+	public function welcome($method = INPUT_POST)
+	{
+		// View instance ( model object, "create")
+		$view = View::factory($this->__model, __FUNCTION__);
+		// Display the view
+		$view->display();
+	}
+
+	public function logout()
+	{
+
+		session_start();
+		$_SESSION['connected'] = false;
+		$this->redirect(['model' => 'login', 'action' => 'welcome']);
 	}
 
 	public function create($method = INPUT_POST, $redirect = 'read'){}

@@ -50,28 +50,28 @@ class LoginModel extends Model{
 	 * @return string
 	 */
 	public static function getModelName() {
-		return UserModel::$_model_name;
+		return LoginModel::$_model_name;
 	}
 
 	/**
 	 * @param string $_model_name
 	 */
 	public static function setModelName( $_model_name) {
-		UserModel::$_model_name = $_model_name;
+		LoginModel::$_model_name = $_model_name;
 	}
 
 	/**
 	 * @return string
 	 */
 	public static function getModelTable() {
-		return UserModel::$_model_table;
+		return LoginModel::$_model_table;
 	}
 
 	/**
 	 * @param string $_model_table
 	 */
 	public static function setModelTable( $_model_table) {
-		UserModel::$_model_table = $_model_table;
+		LoginModel::$_model_table = $_model_table;
 	}
     
     /**
