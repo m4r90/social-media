@@ -1,0 +1,1 @@
+<form id="reaction_<?= $action ?>" method="post" action="<?= $_SERVER['REQUEST_URI'] ?>">

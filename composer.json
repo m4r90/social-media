@@ -1,0 +1,27 @@
+{
+	"name" : "social/media",
+	"description" : "social network",
+	"type" : "project",
+	"license" : "GPL",
+	"authors" : [{
+			"name" : "Margo ROZHKOVA",
+			"email" : "m4r90.r@gmail.com"
+		}
+	],
+	"require" : {
+		"composer/composer" : "^2.0"
+	},
+	"autoload" : {
+		"classmap" : [
+			"admin",
+			"controllers",
+			"dao",
+			"data",
+			"etc",
+			"helpers",
+			"models",
+			"templates",
+			"views"
+		]
+	}
+}
