@@ -23,13 +23,12 @@ class PostController extends Controller {
 	public function input( $method = INPUT_POST) {
 		// Only from POST data
 		if ( count( $_POST) > 0) {
-			$this->__model->setUserid( filter_input( $method, 'userid', FILTER_SANITIZE_STRING));
-			$this->__model->setDateCreate( filter_input( $method, 'datecreate', FILTER_SANITIZE_STRING));
-			$this->__model->setDateUpdate( filter_input( $method, 'dateupdate', FILTER_SANITIZE_STRING));
+			$this->__model->setUserid($_SESSION['id']);
 			$this->__model->setTitle( filter_input( $method, 'title', FILTER_SANITIZE_STRING));
 			$this->__model->setText( filter_input( $method, 'text', FILTER_SANITIZE_STRING));
 			$this->__model->setPublic( filter_input( $method, 'public', FILTER_SANITIZE_STRING));
 			$this->__model->setBlocked( filter_input( $method, 'blocked', FILTER_SANITIZE_STRING));
+
 
 		}
 	}
@@ -105,6 +104,55 @@ _EOS_;
 			// Display the view
 			$view->display();
 		} else {
+
+			var_dump("FILES", $_FILES);
+
+			$target_dir = "media/" . $_SESSION['id'] . "/" . uniqid() . "/";
+
+			if (!file_exists($target_dir)) {
+				mkdir($target_dir, 0777, true);
+			}
+
+			$target_file = $target_dir . basename($_FILES["upload"]["name"]);
+			$uploadOk = 1;
+			$imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+			if (isset($_POST["submit"])) {
+				$check = getimagesize($_FILES["upload"]["tmp_name"]);
+				if ($check !== false) {
+					echo "File is an image - " . $check["mime"] . ".";
+					$uploadOk = 1;
+				} else {
+					echo "File is not an image.";
+					$uploadOk = 0;
+				}
+			}
+			// Check file size
+			if ($_FILES["upload"]["size"] > 5000000) {
+				echo "Sorry, your file is too large.";
+				$uploadOk = 0;
+			}
+
+			// Allow certain file formats
+			if (
+				$imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+			) {
+				echo "Sorry, only JPG, JPEG, PNG files are allowed.";
+				$uploadOk = 0;
+			}
+
+			// Check if $uploadOk is set to 0 by an error
+			if ($uploadOk == 0) {
+				echo "Sorry, your file was not uploaded.";
+				// if everything is ok, try to upload file
+			} else {
+				if (move_uploaded_file($_FILES["upload"]["tmp_name"], $target_file)) {
+					echo "The file " . htmlspecialchars(basename($_FILES["upload"]["name"])) . " has been uploaded.";
+				} else {
+					echo "Sorry, there was an error uploading your file.";
+				}
+			}
+			// die($target_file);
+			$this->__model->setImagePath($target_file);
 			// Persist action
 			$this->persist( $redirect);
 		}
@@ -114,12 +162,33 @@ _EOS_;
 	// Read an object
 	// @Override
 	public function read( $method = INPUT_POST, $redirect = 'update') {
+
+		$sql_list = <<<_EOS_
+		SELECT * 
+		FROM posts 
+		WHERE (userid = ? OR public = true) AND blocked = false
+		ORDER BY datecreate DESC
+		LIMIT 10;
+	_EOS_;
+
+		$sql = <<<_EOS_
+		SELECT * 
+		FROM posts
+		WHERE (userid = ? OR public = true) AND blocked = false AND id = ?;
+	_EOS_;
+
+
 		// Get input id from $GLOBALS['request']
 		$id = $GLOBALS['request']['id'];
 		// Model Class
 		$class = get_class(  $this->__model);
-		// Get the model(s)
-		$models = $this->__dao->read( $class::$_model_table, $class, $id);
+
+		if (empty($id)) {
+			$models = $this->__dao->runSelect($sql_list, [$_SESSION['id']], $class);
+		} else {
+			$models = $this->__dao->runSelect($sql, [$_SESSION['id'], $id], $class);
+		}
+
 		// View instance ( model object, "read")
 		if ( count( $models) == 1) { // Just one object
 			$this->__model = $models[0];

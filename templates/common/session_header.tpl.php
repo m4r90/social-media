@@ -25,9 +25,10 @@
                     </div>
                     <div class="hidden items-center md:block">
                         <div class="ml-10 flex items-baseline space-x-4">
-                            <a href="#"
-                                class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Posts</a>
-                            <a href="#"
+                            <a href="index.php?model=post&action=create"
+                                class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Add
+                                Post</a>
+                            <a href="index.php?model=user&action=read"
                                 class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Users</a>
                         </div>
                     </div>
@@ -57,16 +58,16 @@
                             ?>
 
                             <script>
-                                // JavaScript to show/hide the dropdown menu on hover
-                                const dropdownButton = document.querySelector('.group');
+                            // JavaScript to show/hide the dropdown menu on hover
+                            const dropdownButton = document.querySelector('.group');
 
-                                dropdownButton.addEventListener('mouseenter', () => {
-                                    dropdownButton.querySelector('.absolute').classList.remove('hidden');
-                                });
+                            dropdownButton.addEventListener('mouseenter', () => {
+                                dropdownButton.querySelector('.absolute').classList.remove('hidden');
+                            });
 
-                                dropdownButton.addEventListener('mouseleave', () => {
-                                    dropdownButton.querySelector('.absolute').classList.add('hidden');
-                                });
+                            dropdownButton.addEventListener('mouseleave', () => {
+                                dropdownButton.querySelector('.absolute').classList.add('hidden');
+                            });
                             </script>
 
 

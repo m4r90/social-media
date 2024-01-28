@@ -60,6 +60,7 @@ class LoginController extends Controller {
 					$_SESSION['username'] = $user['username'];
 					$_SESSION['id'] = $user['id'];
 					$_SESSION['avatar'] = $user['avatar'];
+					$_SESSION['admin'] = $user['admin'];
 
 					$this->redirect(['model' => 'post', 'action' => 'read']);
 

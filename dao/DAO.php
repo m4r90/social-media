@@ -10,7 +10,7 @@ namespace mvcCore\Dao;
  */
 
 class DAO {
-	
+
 	const DEBUG = false;
 	
 	private static $dbtype = '';
@@ -99,7 +99,7 @@ _EOS_;
 			// Rollback on error
 			if ( self::$pdo->inTransaction())
 				self::$pdo->rollBack();
-				throw new \UnexpectedValueException( 'DAO SQL Persit Exception : ', $e->getMessage());
+			throw new \UnexpectedValueException('DAO SQL Persit Exception : ' . $e->getMessage(), 10);
 		}
 		// Last insert id
 		return $id;
@@ -252,7 +252,8 @@ _EOS_;
 
 
 		} catch( \PDOException $e) {
-			throw new \UnexpectedValueException( 'DAO SQL Exception : ', $e->getMessage());
+			var_dump($query, $data);
+			throw new \UnexpectedValueException('DAO SQL Exception : ' . $e->getMessage(), 10);
 		}
 
 		return $result;

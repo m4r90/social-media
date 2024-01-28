@@ -11,18 +11,8 @@
                         <div class="group relative">
                             <div
                                 class="relative h-90  w-full overflow-hidden rounded-lg bg-white sm:aspect-h-1 sm:aspect-w-2 lg:aspect-h-1 lg:aspect-w-1 ">
-                                <img
-                                    src="https://images.pexels.com/photos/919073/pexels-photo-919073.jpeg?auto=compress&cs=tinysrgb&w=600">
+                                <img src="<?= $data['image_path'] ?>">
                             </div>
-
-                            <ul>
-                                <p>Images</p>
-                                <?php for ($i = 0; $i < count( $data["images"]); $i++) { ?>
-                                <il>
-                                    <?= $data["images"][$i] ?>
-                                </il>
-                                <?php } ?>
-                            </ul>
 
                         </div>
                         <div class="group relative">
@@ -69,10 +59,7 @@
                                             by <?= $data["reactions"]["items"][$r]["username"] ?>
                                         </p>
                                     </div>
-                                    <?php if ($r >= 2) { ?>
-                                    <div>SEE FULL POST BUTTON</div>
-                                    <?php break; }
-                                } ?>
+<?php } ?>
 
                                 </div>
                             </div>

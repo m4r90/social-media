@@ -20,7 +20,6 @@ class UserController extends Controller {
 		// Only from POST data
 		if ( count( $_POST) > 0) {
 			// Get and set :
-			// Lastname, Firstname and Email
 			
 			$this->__model->setEmail( filter_input( $method, 'email', FILTER_SANITIZE_EMAIL));
 			$this->__model->setPassword( filter_input( $method, 'password', FILTER_SANITIZE_STRING));
@@ -39,7 +38,16 @@ class UserController extends Controller {
 			
 		}
 	}
-	
+
+	public function welcome()
+	{
+		// View instance ( model object, "create")
+		$view = View::factory($this->__model, __FUNCTION__);
+
+		// Display the view
+		$view->display();
+	}
+
 	/**
 	 * =============================================
 	 * Move all the following methods to the abstract Controler class
@@ -49,7 +57,8 @@ class UserController extends Controller {
 	//
 	// Create new order
 	// @Override
-	public function create( $method = INPUT_POST, $redirect = 'read') {
+	public function create($method = INPUT_POST, $redirect = 'welcome')
+	{
 		// Put Input POST form data into the model
 		$this->input( $method);
 

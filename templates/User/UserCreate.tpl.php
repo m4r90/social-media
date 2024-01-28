@@ -1,24 +1,3 @@
-<?php $title = "Sign in"; ?>
-
-
-
-<form id="user_<?= $action ?>" method="post" action="<?= $_SERVER['REQUEST_URI'] ?>">
-
-    <!--
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
--->
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/datepicker.min.js"></script>
 
     <form id="user_create" method="POST" action="index.php?model=user&action=create" enctype="multipart/form-data">

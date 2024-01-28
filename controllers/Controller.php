@@ -119,7 +119,7 @@ abstract class Controller {
 	}
 	
 	//
-	// Persist an object in de data backend (e.g SQL database)
+	// Persist an object in the data backend (e.g SQL database)
 	//
 	public function persist( $redirect = 'read') {
 		// Put Input data into the model

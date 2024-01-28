@@ -27,14 +27,14 @@ class Config {
 	// Database parameters
 	const DBTYPE = 'mysql';
 	const DBHOST = 'linserv-info-01.campus.unice.fr';
-	const DBPORT = 3306; // sur linserv-info-03
+	const DBPORT = 3306; // sur linserv-info-01
 //	const DBPORT = 5433; // localhost
 
-	const DBNAME = 'rm200523_social_media'; // sur linserv-info-03
-//	const DBNAME = 'car-workshop'; // localhost
+	const DBNAME = 'rm200523_social_media'; // sur linserv-info-01
+
 	const DBUSER = 'rm200523';
-	const DBPASSWD = 'rm200523'; // sur linserv-info-03
-//	const DBPASSWD = '<jmb!5433>'; // localhost
+	const DBPASSWD = 'rm200523'; // sur linserv-info-01
+//	
 	
 	// Form data defintion
 	static $REQUIRED = 'required=“required”';

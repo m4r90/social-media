@@ -1,13 +1,9 @@
 <?php
 namespace mvcCore\Controllers;
 
-//use mvcCore\Data\Cars;
+
 use mvcCore\Views\View;
 
-/*
- * @author : Jean-Michel Bruneau
- * @version : 1.0
- */
 
 class AdminController extends Controller {
 	
@@ -21,29 +17,16 @@ class AdminController extends Controller {
 	// @Override
 	public function input( $method = INPUT_POST) {
 		// Only from POST data
-		if ( count( $_POST) > 0) {
-			// Get and set :
-			// Lastname, Firstname and Email
-			
+		if (count($_POST) > 0) {
+
 			$this->__model->setEmail( filter_input( $method, 'email', FILTER_SANITIZE_EMAIL));
 			$this->__model->setPassword( filter_input( $method, 'password', FILTER_SANITIZE_STRING));
 			$this->__model->setName( filter_input( $method, 'name', FILTER_SANITIZE_STRING));
 			$this->__model->setSurname( filter_input( $method, 'surname', FILTER_SANITIZE_STRING));
 			$this->__model->setAvatar( filter_input( $method, 'avatar', FILTER_SANITIZE_STRING));
 
-
-			
 		}
 	}
-	
-	/**
-	 * =============================================
-	 * Move all the following methods to the abstract Controler class
-	 * =============================================
-	 */
-	
-	//
-	// Create new order
 	// @Override
 	public function create( $method = INPUT_POST, $redirect = 'read') {
 		// Put Input POST form data into the model
@@ -64,8 +47,6 @@ class AdminController extends Controller {
 		}
 	}
 
-	
-	// Read an object
 	// @Override
 	public function read( $method = INPUT_POST, $redirect = 'update') {
 		// Get input id from $GLOBALS['request']
@@ -79,7 +60,7 @@ class AdminController extends Controller {
 			$this->__model = $models[0];
 			// Decrypt some fields
 			$this->__model->decrypt();
-		} elseif ( count( $models) > 1) { // More than one object ( i.e. use a template with a list layout)
+		} elseif (count($models) > 1) {
 			$this->__model = $models;
 			// Decrypt some fields
 			for ($n = 0; $n < count( $models); $n++) {
@@ -107,7 +88,6 @@ class AdminController extends Controller {
 		}
 	}
 	
-	// Update an object
 	// @Override
 	public function update( $method = INPUT_POST, $redirect = 'read') {
 		// Get input id from $GLOBALS['request']
@@ -130,10 +110,7 @@ class AdminController extends Controller {
 				// Encrypt data
 				$data = $this->__model->encrypt( $data);
 				// Update the database object
-				$result = $this->__dao->update( $class::$_model_table, $data, $id);
-				// TODO / JMB : $result error processing
-				// View instance ( model object, "update")
-
+				$result = $this->__dao->update($class::$_model_table, $data, $id);
 				// Check for a update submit
 				$update = filter_input( $method, 'update', FILTER_SANITIZE_STRING);
 				
@@ -154,7 +131,6 @@ class AdminController extends Controller {
 		}
 	}
 	
-	// Delete an object
 	// @Override
 	public function delete( $method = INPUT_POST, $redirect = 'create') {
 		// Get input id from $GLOBALS['request']

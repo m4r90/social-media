@@ -27,6 +27,8 @@ class PostModel extends Model{
 
 	protected $reactions = [];
 
+	protected $image_path = "";
+
 
     public function getProperties($empty = true, $default = true){
         $properties = parent::getProperties($empty, $default);
@@ -145,14 +147,14 @@ class PostModel extends Model{
 	 * @return mixed
 	 */
 	public function getText() {
-		return $this->datecreate;
+		return $this->text;
 	}
 	
 	/**
-	 * @param mixed $datecreate
+	 * @param mixed $text
 	 */
-	public function setText( $datecreate) {
-		$this->datecreate = $datecreate;
+	public function setText( $text) {
+		$this->text = $text;
 	}
 
     /**
@@ -183,6 +185,36 @@ class PostModel extends Model{
 		$this->blocked = $blocked;
 	}
 
+
+	/**
+	 * @return mixed
+	 */
+	public function getReactions() {
+		return $this->reactions;
+	}
+	
+	/**
+	 * @param mixed $reactions
+	 */
+	public function setReactions( $reactions) {
+		$this->reactions = $reactions;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getImagePath() {
+		return $this->image_path;
+	}
+	
+	/**
+	 * @param mixed $image_path
+	 */
+	public function setImagePath( $image_path) {
+		$this->image_path = $image_path;
+	}
+
+	
 	/**
 	 * @return mixed
 	 */
@@ -197,20 +229,6 @@ class PostModel extends Model{
 		$this->images = $images;
 	}
 
-	
-	/**
-	 * @return mixed
-	 */
-	public function getReactions() {
-		return $this->reactions;
-	}
-	
-	/**
-	 * @param mixed $reactions
-	 */
-	public function setReactions( $reactions) {
-		$this->reactions = $reactions;
-	}
 
 
 
