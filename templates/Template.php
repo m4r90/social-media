@@ -30,7 +30,9 @@ class Template {
 	
 	// Template common header
 	private $_common_header = __DIR__ . '/common/header.tpl.php';
-	
+
+	private $_session_header = __DIR__ . '/common/session_header.tpl.php';
+
 	// Template model header
 	private $_header = '.header.tpl.php';
 	
@@ -48,7 +50,12 @@ class Template {
 	 * @return string
 	 */
 	public function getCommonHeader() {
-		return $this->_common_header;
+		if (array_key_exists('connected', $_SESSION) && $_SESSION['connected']) {
+			return $this->_session_header;
+		} else {
+			return $this->_common_header;
+		}
+
 	}
 
 	/**
@@ -56,6 +63,7 @@ class Template {
 	 */
 	public function setCommonHeader( $_common_header) {
 		$this->_common_header = $_common_header;
+	
 	}
 
 	/**
@@ -76,14 +84,23 @@ class Template {
 	 * @return mixed
 	 */
 	public function getHeader() {
-		return $this->_header;
+
+		// If not connected set header to null
+
+
 	}
 
 	/**
 	 * @param mixed $_header
 	 */
 	public function setHeader( $_header) {
-		$this->_header = $_header;
+
+		// If not connected set header to null
+		if ($_SESSION['connected']) {
+			$this->_header = $_header;
+		} else {
+			$this->_header = null;
+		}
 	}
 
 	/**
@@ -149,8 +166,8 @@ class Template {
 			$tpl_filename = self::$dir . $model_name . '/';
 
 			// Set template model header ( e.g. templates/Order/Order.header.tpl.php)
-			if ( file_exists( $tpl_filename . $model_name. $this->_header))
-				$this->_header = $tpl_filename . $model_name . $this->_header;
+		if (file_exists($tpl_filename . $model_name . $this->_header))
+			$this->_header = $tpl_filename . $model_name . $this->_header;
 		else
 			$this->_header = null;
 		
@@ -159,7 +176,9 @@ class Template {
 				$this->_footer = $tpl_filename . $model_name . $this->_footer;
 		else
 			$this->_footer = null;
+
 		
+
 		// Template filename (e.g. templates/Order/OrderCreate)
 		$tpl_filename .= $tpl_prefix;
 		

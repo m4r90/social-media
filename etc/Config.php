@@ -1,1 +1,1 @@
-Config.dev.php
+Config.prod.php

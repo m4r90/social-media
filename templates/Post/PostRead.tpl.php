@@ -59,7 +59,7 @@
                                     <?php for ($r = 0; $r < count( $data["reactions"]["items"]); $r++) { ?>
                                     <div class="flex items-center mt-4 bg-white rounded-lg">
                                         <!-- <img class="p-1 w-10 h-10 rounded-full"
-                                            src="/social-media/media/avatars/<?= $data["reactions"]["items"][$r]["userid"] ?>.jpeg"
+                                            src="media/avatars/<?= $data["reactions"]["items"][$r]["userid"] ?>.jpeg"
                                             alt="<?= $data["reactions"]["items"][$r]["username"] ?>"> -->
                                         <img class="p-1 w-10 h-10 rounded-full"
                                             src="https://images.pexels.com/photos/831475/pexels-photo-831475.jpeg?auto=compress&cs=tinysrgb&w=600"

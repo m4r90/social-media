@@ -21,8 +21,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/datepicker.min.js"></script>
 
-    <form id="user_create" method="POST" action="/social-media/index.php?model=user&action=create"
-        enctype="multipart/form-data">
+    <form id="user_create" method="POST" action="index.php?model=user&action=create" enctype="multipart/form-data">
         <div class="space-y-12 mx-32">
             <div class="border-b border-gray-900/10 pb-12">
                 <h2 class="text-base font-semibold leading-7 text-gray-900">Profile</h2>

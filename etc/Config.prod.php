@@ -20,14 +20,14 @@ class Config {
 	const XHTML = true;
 	
 	// Default model
-	const MODEL = 'post';
+	const MODEL = 'login';
 	// Default action
-	const ACTION = 'read';
+	const ACTION = 'welcome';
 	
 	// Database parameters
 	const DBTYPE = 'mysql';
 	const DBHOST = 'linserv-info-01.campus.unice.fr';
-	const DBPORT = 5432; // sur linserv-info-03
+	const DBPORT = 3306; // sur linserv-info-03
 //	const DBPORT = 5433; // localhost
 
 	const DBNAME = 'rm200523_social_media'; // sur linserv-info-03
