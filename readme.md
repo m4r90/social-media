@@ -1,4 +1,66 @@
+# Social Media PHP MVC Application
+
+A PHP-based social media platform built using the Model-View-Controller (MVC) architectural pattern. This application allows users to create accounts, share posts, interact with other users, and manage their social connections.
+
+## Features
+
+- User authentication and authorization
+- Post creation and management
+- Friend system
+- Reactions and comments on posts
+- Image uploads for posts
+- Admin dashboard for user management
+
+## Technical Stack
+
+- PHP 7.4+
+- MySQL/MariaDB
+- MVC Architecture
+- Composer for dependency management
+- Tailwind CSS for styling
+
+## Project Structure
+
+- `/controllers` - Application logic and request handling
+- `/models` - Data models and database interactions
+- `/views` - User interface templates
+- `/dao` - Data Access Objects for database operations
+- `/etc` - Configuration files
+- `/helpers` - Utility classes
+- `/templates` - Reusable UI components
+
+## Database Schema
+
+The application uses several interconnected tables:
+- `users` - User account information
+- `posts` - User posts and content
+- `friends` - Friend relationships between users
+- `reactions` - Post reactions and comments
+- `post_images` - Images associated with posts
+
+## Security Features
+
+- Password encryption
+- Session management
+- Input sanitization
+- CSRF protection
+- XSS prevention
+
+## Getting Started
+
+1. Install dependencies:
+```bash
 composer update
+```
+
+2. Configure your database in `etc/Config.php`
+
+3. Access the application through your web server:
+```
+http://localhost/index.php
+```
+
+For detailed SQL queries and database operations, see the SQL commands section below.
 
 # SQL commands
 
